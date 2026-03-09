@@ -1,0 +1,486 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <title>Russkiy Express</title>
+</head>
+<body class="bg-gray-100"> 
+    <header class="w-full">
+        
+        <div class="w-full bg-[#f8f9fa] py-2 border-b border-gray-200 text-[11px] font-sans">
+            <div class="max-w-[1440px] mx-auto px-4 flex justify-between items-center">
+                
+                <div class="flex items-center space-x-4">
+                    <a href="#" class="bg-[#eb1901] text-white px-3 py-1.5 rounded-full flex items-center text-[11px] font-bold hover:bg-red-700 transition-colors">
+                        Сайт для туристов<span class="ml-1 text-[14px]">➚</span>
+                    </a>
+                    
+                    <div class="flex items-center space-x-3 text-gray-500">
+                        <div class="relative inline-block text-left" id="currency-dropdown">
+                            <div id="currency-btn" class="flex items-center cursor-pointer border px-2 py-0.5 rounded bg-white hover:border-gray-400 transition-all shadow-sm text-gray-700 group">
+                                <span id="current-currency" class="font-bold group-hover:text-[#eb1901] transition-colors">RUB ₽</span>
+                                <svg id="dropdown-arrow" class="w-3 h-3 ml-1 transition-transform duration-200" fill="currentColor" viewBox="0 0 20 20">
+                                    <path d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z" />
+                                </svg>
+                            </div>
+
+                            <div id="currency-menu" class="hidden absolute left-0 mt-1 w-28 bg-white border border-gray-200 rounded shadow-xl z-[100] overflow-hidden">
+                                <div class="flex flex-col text-[11px]">
+                                    <button class="px-3 py-1.5 text-left hover:bg-gray-100 hover:text-[#eb1901] transition-colors border-b border-gray-50">RUB ₽</button>
+                                    <button class="px-3 py-1.5 text-left hover:bg-gray-100 hover:text-[#eb1901] transition-colors border-b border-gray-50">BYN Br</button>
+                                    <button class="px-3 py-1.5 text-left hover:bg-gray-100 hover:text-[#eb1901] transition-colors">KZT ₸</button>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="flex space-x-3 items-center">
+                            <span>USD <b class="text-gray-900 ml-0.5">80,14</b></span>
+                            <span>EUR <b class="text-[#eb1901] ml-0.5">93,47</b></span>
+                            <span>EUR/USD <b class="text-gray-900 ml-0.5">1,17</b></span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="flex items-center space-x-6">
+                    <div class="text-gray-400">
+                        Поддержка турагентов и частных лиц: 
+                        <a href="tel:+74950096699" class="relative ml-1 font-bold text-[#eb1901] group py-1">
+                            +7 (495) 009-66-99
+                            <span class="absolute left-0 bottom-0 w-0 h-0.5 bg-[#eb1901]  transition-all duration-300 group-hover:w-full"></span>
+                        </a>
+                    </div>
+                    
+                    <button class="flex items-center space-x-1 border border-gray-200 px-3 py-1 rounded bg-white hover:bg-gray-50 transition shadow-sm">
+                        <svg class="w-4 h-4 text-gray-400" fill="currentColor" viewBox="0 0 20 20"><path d="M10 9a3 3 0 100-6 3 3 0 000 6zm-7 9a7 7 0 1114 0H3z" /></svg>
+                        <span class="font-medium text-gray-700 text-xs">Войти</span>
+                    </button>
+                </div>
+            </div>
+        </div>
+         </header>
+
+       <section class="w-full bg-white py-5 border-b border-gray-100">
+    <div class="max-w-[1440px] mx-auto px-4 flex items-center justify-between">
+        <div class="flex-shrink-0 mr-8 cursor-pointer">
+            <img src="img/logo.svg" alt="Logo" class="h-12 w-auto object-contain">
+        </div>
+
+        <div class="flex flex-wrap items-center gap-1.5" id="main-nav">
+            <a href="#" class="px-3.5 py-2 bg-[#f2f4f7] text-gray-800 text-[14px] font-medium rounded-lg transition-all hover:text-[#eb1901] hover:bg-[#e8eaed]">Страны</a>
+            
+            
+            <a href="#" data-menu="fin-conditions" class="nav-link px-3.5 py-2 bg-[#f2f4f7] text-gray-800 text-[14px] font-medium rounded-lg transition-all hover:text-[#eb1901] hover:bg-[#e8eaed]">Фин. условия</a>
+            
+            <a href="#" data-menu="training" class="nav-link px-3.5 py-2 bg-[#f2f4f7] text-gray-800 text-[14px] font-medium rounded-lg transition-all hover:text-[#eb1901] hover:bg-[#e8eaed]">Обучение</a>
+            
+            <a href="#" data-menu="privileges" class="nav-link px-3.5 py-2 bg-[#f2f4f7] text-gray-800 text-[14px] font-medium rounded-lg transition-all hover:text-[#eb1901] hover:bg-[#e8eaed]">Привилегии</a>
+            
+            <a href="#" data-menu="projects" class="nav-link px-3.5 py-2 bg-[#f2f4f7] text-gray-800 text-[14px] font-medium rounded-lg transition-all hover:text-[#eb1901] hover:bg-[#e8eaed]">Проекты</a>
+            
+            <a href="#" class="px-3.5 py-2 bg-[#f2f4f7] text-gray-800 text-[14px] font-medium rounded-lg transition-all hover:text-[#eb1901] hover:bg-[#e8eaed]">Начало сотрудничества</a>
+            
+            <a href="#" class="px-3.5 py-2 bg-[#f2f4f7] text-gray-800 text-[14px] font-bold uppercase tracking-tight rounded-lg transition-all hover:text-[#eb1901] hover:bg-[#e8eaed]">TRAVEL LIVE</a>
+            
+            <a href="#" data-menu="media" class="nav-link px-3.5 py-2 bg-[#f2f4f7] text-gray-800 text-[14px] font-medium rounded-lg transition-all hover:text-[#eb1901] hover:bg-[#e8eaed]">Медиа</a>
+            
+            <a href="#" data-menu="company" class="nav-link px-3.5 py-2 bg-[#f2f4f7] text-gray-800 text-[14px] font-medium rounded-lg transition-all hover:text-[#eb1901] hover:bg-[#e8eaed]">Компания</a>
+            
+            <a href="#" class="px-3.5 py-2 bg-[#f2f4f7] text-gray-800 text-[14px] font-medium rounded-lg transition-all hover:text-[#eb1901] hover:bg-[#e8eaed]">Контакты</a>
+        </div>
+    </div>
+</section>
+
+<div id="mega-menu" class="absolute hidden opacity-0 -translate-y-2 transition-all duration-300 z-[200] pointer-events-none">
+    <div id="menu-content" class="bg-white border border-gray-100 rounded-[32px] shadow-[0_25px_60px_rgba(0,0,0,0.18)] flex overflow-hidden">
+        </div>
+</div>
+
+ <section1 class="max-w-[1440px] mx-auto p-4 justify-space flex">
+    <div class="flex items-center gap-2  ">
+
+    <p class="bg-red-700 text-white w-[100px] flex items-center hover:bg-red-600 cursor-pointer transition-all duration-500 ease-in-out rounded-lg pl-3 py-2 text-sm">
+        Туры <span class="ml-2"><i class="fa-solid fa-plane"></i></span>
+    </p>
+
+   <p class="w-[110px] text-[16px] font-bold flex items-center hover:bg-white transition-all duration-500 ease-in-out cursor-pointer rounded-lg pl-3 py-2 hover:text-red-700">
+    <i class="fa-solid fa-bed ml-2 mr-2"></i>
+    Отели 
+    <span class="ml-2">
+    </span>
+</p>
+
+<p class=" item-center  w-[250px] text-[16px] font-bold flex items-center hover:bg-white transition-all duration-500 ease-in-out cursor-pointer rounded-lg pl-3 py-2 hover:text-red-700">
+   <i class="fa-brands fa-fort-awesome ml-3 mr-3 "></i>
+    Экскурсионые туры
+    <span class="ml-2">
+       
+    </span>
+</p>
+
+</div>
+
+<div class="flex justify-end w-full   text-gray-500">
+    <p class="w-[160px] text-[16px] font-bold flex items-center hover:text-red-700 transition-all duration-500 ease-in-out cursor-pointer rounded-lg pl-3 py-2">
+         <i class="fa-solid fa-gem ml-2 mr-2"></i>VIP-Сeрвисы
+    </p>
+      <p class="w-[120px] text-[16px] font-bold flex items-center hover:text-red-700 transition-all duration-500 ease-in-out cursor-pointer rounded-lg pl-3 py-2">
+         <span>➚</span></i>FIT-express 
+    </p>
+    <p>
+    <p class="w-[150px] text-[16px] font-bold flex items-center hover:text-red-700 transition-all duration-500 ease-in-out cursor-pointer rounded-lg pl-3 py-2">
+         <span>➚</span> Online express
+    </p>
+
+</div>
+
+  
+
+ </section1>
+
+ <section3 class=" max-w-[1400px] mx-auto flex flex-col md:flex-row gap-4 w-full items-stretch">
+    <div class="relative w-full md:w-2/3 h-[450px] overflow-hidden rounded-3xl group">
+        <div id="slider" class="flex transition-transform duration-700 ease-in-out h-full">
+            
+            <div class="min-w-full h-full relative cursor-pointer">
+    <img src="img/sekil4.webp" class="w-full h-full object-cover">
+    
+    <div class="absolute top-2 left-10 text-white z-10">
+        <h1 class="text-8xl font-mono italic ">
+            Раннее бронирование
+        </h1>
+        <p class="text-lg opacity-90 drop-shadow-sm py-2">
+            Фиксируйте выгодные условия заранее
+        </p>
+    </div>
+</div>
+             <div class="min-w-full h-full relative">
+                <img src="img/sekil6.webp" class="w-full h-full object-cover">
+                <div class="absolute inset-0 bg-black/30"></div>
+                <div class="absolute top-2  left-10 text-white z-10">
+                    <h2 class="text-4xl font-bold italic text-7xl">Tурция</h2>
+                    <p class="py-5">Туры с дополнительной выгодой +1% в марте </p>
+                </div>
+            </div>
+            <div class="min-w-full h-full relative">
+                <video muted loop playsinline class="w-full h-full object-cover">
+                    <source src="img/video1.mp4" type="video/mp4">
+                </video>
+                <div class="absolute inset-0 bg-black/30"></div>
+                <div class="absolute top-2 left-10 text-white z-10">
+                   <h2 class="text-4xl font-bold italic text-7xl">Италия</h2>
+                    <p class="py-5">ВИЗОВОЕ СОПРОВОЖДЕНИЕ</p>
+                </div>
+            </div>
+
+             <div class="min-w-full h-full relative">
+                <img src="img/11.webp" class="w-full h-full object-cover">
+                <div class="absolute inset-0 bg-black/30"></div>
+                <div class="absolute top-2  left-10 text-white z-10">
+                    <h2 class="text-4xl font-bold italic text-7xl">Forte Village Resort 5*</h2>
+                    <p class="py-5">Раннее бронирование на лето 2026</p>
+                </div>
+            </div>
+            <div class="min-w-full h-full relative">
+                <img src="img/12.webp" class="w-full h-full object-cover">
+                <div class="absolute inset-0 bg-black/30"></div>
+                <div class="absolute top-2  left-10 text-white z-10">
+                    <h2 class="text-4xl font-bold italic text-7xl">Черногория</h2>
+                    <p class="py-5">Отдых на отелях Dukley, one&only Portonovi, The Chedi , на виллах Cape Montenegro , Oak Leaf Residences, Lustica bay</p>
+                </div>
+            </div>
+
+            <div class="min-w-full h-full relative">
+                <img src="img/13.webp" class="w-full h-full object-cover">
+                <div class="absolute inset-0 bg-black/30"></div>
+                <div class="absolute top-2  left-10 text-white z-10">
+                    <h2 class="text-4xl font-bold italic text-7xl">Турция. Стамбул</h2>
+                    <h2 class="text-4xl font-bold italic text-7xl">Каппадокия</h2>
+                    
+                    <p class="py-5">Раннее бронирование выгода до 40% на отели на побережье</p>
+                </div>
+            </div>
+
+            <div class="min-w-full h-full relative">
+                <img src="img/14.webp" class="w-full h-full object-cover">
+                <div class="absolute inset-0 bg-black/30"></div>
+                <div class="absolute top-2  left-10 text-white z-10">
+                    <h2 class="text-4xl font-bold italic text-7xl">Абхазия</h2>
+                    
+                    
+                    <p class="py-5">Влюбляем в страну по-новому</p>
+                </div>
+            </div>
+
+
+            <div class="min-w-full h-full relative">
+                <video muted loop playsinline class="w-full h-full object-cover">
+                    <source src="img/video.mp4" type="video/mp4">
+                </video>
+                <div class="absolute inset-0 bg-black/30"></div>
+                <div class="absolute top-2 left-10 text-white z-10">
+                    <h2 class="text-4xl font-bold italic text-7xl">ГРУЗИЯ</h2>
+                    <p class="py-5">Забронируйте летний отдых заранее</p>
+                </div>
+            </div>
+
+            <div class="min-w-full h-full relative">
+                <img src="img/img8.png" class="w-full h-full object-cover">
+                <div class="absolute inset-0 bg-black/30"></div>
+                <div class="absolute top-2  left-10 text-white z-10">
+                    <h2 class="text-4xl font-bold italic text-7xl">Активировать заботу</h2>
+                    
+                    
+                    <p class="py-5">Мы ценим вашу обратную связь и всегда готовы помочь</p>
+                </div>
+            </div>
+            <div class="min-w-full h-full relative">
+                <img src="img/16.webp" class="w-full h-full object-cover">
+                <div class="absolute inset-0 bg-black/30"></div>
+                <div class="absolute top-2  left-10 text-white z-10">
+                    <h2 class="text-4xl font-bold italic text-7xl">Иордания</h2>
+                    
+                    
+                    <p class="py-5">Готовые экскурсионные туры</p>
+                </div>
+            </div>
+            <div class="min-w-full h-full relative">
+                <img src="img/15.webp" class="w-full h-full object-cover">
+                <div class="absolute inset-0 bg-black/30"></div>
+                <div class="absolute top-2  left-10 text-white z-10">
+                    <h2 class="text-4xl font-bold italic text-7xl">Таиланд</h2>
+                    
+                    
+                    <p class="py-5">Трансфер в подарок</p>
+                </div>
+            </div>
+
+        </div>
+
+        <div id="dotsContainer" class="absolute bottom-6 left-10 flex gap-2"></div>
+
+        <div class="absolute bottom-6 right-10 flex gap-3">
+            <button onclick="prevSlide()" class="w-12 h-12 bg-white/20 backdrop-blur-md text-white rounded-xl flex items-center justify-center hover:bg-white/40 transition">
+                <i class="fa-solid fa-chevron-left"></i>
+            </button>
+            <button onclick="nextSlide()" class="w-12 h-12 bg-white/20 backdrop-blur-md text-white rounded-xl flex items-center justify-center hover:bg-white/40 transition">
+                <i class="fa-solid fa-chevron-right"></i>
+            </button>
+        </div>
+    </div>
+
+    <div class="w-full md:w-1/3 flex flex-col gap-4">
+        
+
+        <div class="relative flex-1 rounded-3xl overflow-hidden group cursor-pointer">
+            <img src="img/sekil5.webp" class="w-full h-full object-cover">
+            <div class="absolute top-6 left-6 text-white  font-bold">
+                <p class="text-3xl font-black">Morakko</p>
+            </div>
+            <button class="absolute bottom-6 left-6 w-10 h-10 bg-white rounded-xl flex items-center justify-center"><i class="fa-solid fa-arrow-up-right-from-square text-xs text-black"></i></button>
+        </div>
+        <div class="relative flex-1 rounded-3xl overflow-hidden group cursor-pointer">
+            <img src="img/sekil3.webp" class="w-full h-full object-cover ">
+            <div class="absolute top-6 left-6 text-white">
+                
+            </div>
+            <button class="absolute bottom-6 left-6 w-10 h-10 bg-white rounded-xl flex items-center justify-center"><i class="fa-solid fa-arrow-up-right-from-square text-xs text-black"></i></button>
+        </div>
+    </div>
+</section3>
+
+
+
+<section class="max-w-[1400px] mx-auto flex flex-col py-5 w-full items-stretch">
+    <div>
+        <h1 class="text-4xl font-bold py-5 mb-5">Дополнительные услуги</h1>
+    </div>
+
+   <div class="flex flex-col md:flex-row gap-4 w-full items-stretch mt-5">
+    <div class="relative group mt-5 w-[230px] h-[150px] flex items-end justify-center">
+
+    <div class="absolute bottom-0 w-full h-[150px] bg-white rounded-3xl 
+                transition-all duration-500 ease-in-out
+                group-hover:h-[190px] shadow-sm group-hover:shadow-xl">
+    </div>
+
+    <img src="img/v2.png" alt="icon"
+         class=" absolute -top-10 left-1/2 -translate-x-1/2">
+
+    <p class="relative font-bold text-center text-[#1a1a1a] leading-tight pb-6">
+        Online <br> бронирование
+    </p>
+
+</div>
+<div class="relative group mt-5 w-[230px] h-[150px] flex items-end justify-center">
+
+    <div class="absolute bottom-0 w-full h-[150px] bg-white rounded-3xl 
+                transition-all duration-500 ease-in-out
+                group-hover:h-[190px] shadow-sm group-hover:shadow-xl">
+    </div>
+
+    <img src="img/v4.png" alt="icon"
+         class=" absolute -top-10 left-1/2 -translate-x-1/2">
+
+    <p class="relative font-bold text-center text-[#1a1a1a] leading-tight pb-6">
+        Комбинированные  <br> пакеты услуг
+    </p>
+
+</div>
+<div class="relative group mt-5 w-[230px] h-[150px] flex items-end justify-center">
+
+    <div class="absolute bottom-0 w-full h-[150px] bg-white rounded-3xl 
+                transition-all duration-500 ease-in-out
+                group-hover:h-[190px] shadow-sm group-hover:shadow-xl">
+    </div>
+
+    <img src="img/v1.png" alt="icon"
+         class=" absolute -top-10 left-1/2 -translate-x-1/2">
+
+    <p class="relative font-bold text-center text-[#1a1a1a] leading-tight pb-6">
+         Круизы
+    </p>
+
+</div>
+<div class="relative group mt-5 w-[230px] h-[150px] flex items-end justify-center">
+
+    <div class="absolute bottom-0 w-full h-[150px] bg-white rounded-3xl 
+                transition-all duration-500 ease-in-out
+                group-hover:h-[190px] shadow-sm group-hover:shadow-xl">
+    </div>
+
+    <img src="img/v3.png" alt="icon"
+         class=" absolute -top-10 left-1/2 -translate-x-1/2">
+
+    <p class="relative font-bold text-center text-[#1a1a1a] leading-tight pb-6">
+        Событийные туры
+    </p>
+
+</div>
+<div class="relative group mt-5 w-[230px] h-[150px] flex items-end justify-center">
+
+    <div class="absolute bottom-0 w-full h-[150px] bg-white rounded-3xl 
+                transition-all duration-500 ease-in-out
+                group-hover:h-[190px] shadow-sm group-hover:shadow-xl">
+    </div>
+
+    <img src="img/v5.png" alt="icon"
+         class=" absolute -top-10 left-1/2 -translate-x-1/2">
+
+    <p class="relative font-bold text-center text-[#1a1a1a] leading-tight pb-6">
+        Образование
+    </p>
+
+</div>
+<div class="relative group mt-5 w-[230px] h-[150px] flex items-end justify-center">
+
+    <div class="absolute bottom-0 w-full h-[150px] bg-white rounded-3xl 
+                transition-all duration-500 ease-in-out
+                group-hover:h-[190px] shadow-sm group-hover:shadow-xl">
+    </div>
+
+    <img src="img/v6.png" alt="icon"
+         class=" absolute -top-10 left-1/2 -translate-x-1/2">
+
+    <p class="relative font-bold text-center text-[#1a1a1a] leading-tight pb-6">
+        Оздоровительные туры
+    </p>
+
+</div>
+
+   </div>
+
+   <div class="my-10 flex gap-1">
+   
+   <div class="flex ">
+    <p class="transition-all duration-500 ease-in-out hover:bg-white  p-2 rounded-3xl w-[210px] text-center cursor-pointer hover:text-red-700">
+    Активировать заботу
+</p>
+   </div>
+   <div class="flex">
+    <p class="transition-all duration-500 ease-in-out hover:bg-white  p-2 rounded-3xl w-[230px] text-center cursor-pointer hover:text-red-700">
+    Популярные направления
+</p>
+   </div>
+   <div>
+    <p class="transition-all duration-500 ease-in-out hover:bg-white  p-2 rounded-3xl w-[200px] text-center cursor-pointer hover:text-red-700">
+    Рекомендуемые отели
+</p>
+   </div>
+   <div>
+    <p class="transition-all duration-500 ease-in-out hover:bg-white  p-2 rounded-3xl w-[200px] text-center cursor-pointer hover:text-red-700">
+    Экскурсионные туры
+</p>
+   </div>
+   <div>
+    <p class="transition-all duration-500 ease-in-out hover:bg-white  p-2 rounded-3xl w-[110px] text-center cursor-pointer hover:text-red-700">
+   Проекты
+</p>
+   </div>
+   <div>
+    <p class="transition-all duration-500 ease-in-out hover:bg-white  p-2 rounded-3xl w-[110px] text-center cursor-pointer hover:text-red-700">
+    Сервисы
+</p>
+   </div>
+   <div>
+    <p class="transition-all duration-500 ease-in-out hover:bg-white  p-2 rounded-3xl w-[80px] text-center cursor-pointer hover:text-red-700">
+   Акции
+</p>
+   </div>
+   <div>
+    <p class="transition-all duration-500 ease-in-out hover:bg-white  p-2 rounded-3xl w-[80px] text-center cursor-pointer hover:text-red-700">
+    Блог
+</p>
+   </div>
+   <div>
+    <p class="transition-all duration-500 ease-in-out hover:bg-white  p-2 rounded-3xl w-[120px] text-center cursor-pointer hover:text-red-700">
+ Наши офисы
+</p>
+   </div>
+</div>
+    
+</section>
+
+
+
+ <section>
+    <section class="max-w-[1400px]  mx-auto py-3 px-4 font-['Golos_Text']">
+    <div class="relative w-full h-[230px] bg-[#d30000] rounded-[32px] overflow-hidden shadow-xl">
+        
+        <div class="absolute inset-0 z-0 pointer-events-none" 
+             style="background-color: #ff0000; 
+                    mask-image: url('img/background.svg'); 
+                    mask-size: cover; 
+                    mask-repeat: repeat;
+                    -webkit-mask-image: url('img/background.svg'); 
+                    -webkit-mask-size: cover;">
+        </div>
+
+        <img src="img/bg2.png" alt="Rescue Ring" 
+             class="  w-[600px]  absolute -right-8  object-contain z-10">
+
+        <div class="absolute left-16 top-1/2 -translate-y-1/2 text-white z-20 max-w-[600px]">
+            <h1 class="text-4xl md:text-5xl font-black mb-4 uppercase tracking-tighter leading-none">
+                АКТИВИРОВАТЬ ЗАБОТУ
+            </h1>
+
+            <p class="mb-10 text-xl font-medium opacity-90 leading-snug">
+                Мы ценим вашу обратную связь и всегда готовы помочь
+            </p>
+
+            <button class="bg-white text-[#ff0000] px-10 py-4 rounded-xl font-bold text-lg hover:bg-gray-100 transition-all shadow-md">
+                Написать
+            </button>
+        </div>
+
+    </div>
+</section>
+
+ </section>
+   
+
+    <script src="main.js"></script>
+</body>
+</html>
