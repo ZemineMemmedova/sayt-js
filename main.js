@@ -326,6 +326,113 @@ document.querySelectorAll('button').forEach(btn => {
 // İlk yüklənmədə aktiv et
 updateSlider();
    
+//section car
+document.addEventListener('DOMContentLoaded', () => {
+    // --- 1. Şəkil Animasiyası ---
+    const heroImg = document.getElementById('hero-img');
+    let isZoomed = false;
+    setInterval(() => {
+        heroImg.style.transform = isZoomed ? 'scale(1)' : 'scale(1.15)';
+        isZoomed = !isZoomed;
+    }, 3500);
 
+    // --- 2. Dropdownların İdarə Edilməsi ---
+    const containers = document.querySelectorAll('.dropdown-container');
+
+    containers.forEach(container => {
+        const toggle = container.querySelector('.dropdown-toggle');
+        const list = container.querySelector('.dropdown-list');
+        const arrow = container.querySelector('.arrow');
+        const selectedValue = container.querySelector('.selected-value');
+
+        // Aç/Bağla
+        toggle.addEventListener('click', (e) => {
+            e.stopPropagation();
+            
+            // Digər açıq dropdownları bağla (eyni anda ancaq biri açıq olsun)
+            document.querySelectorAll('.dropdown-list').forEach(l => {
+                if(l !== list) l.classList.add('hidden');
+            });
+            document.querySelectorAll('.arrow').forEach(a => {
+                if(a !== arrow) a.classList.remove('rotate-180');
+            });
+
+            const isHidden = list.classList.toggle('hidden');
+            arrow.classList.toggle('rotate-180', !isHidden);
+        });
+
+        // Seçim etmək
+        list.querySelectorAll('div').forEach(item => {
+            item.addEventListener('click', () => {
+                selectedValue.innerText = item.innerText;
+                list.classList.add('hidden');
+                arrow.classList.remove('rotate-180');
+            });
+        });
+    });
+
+    // Kənara klikləyəndə hamısını bağla
+    window.addEventListener('click', () => {
+        document.querySelectorAll('.dropdown-list').forEach(l => l.classList.add('hidden'));
+        document.querySelectorAll('.arrow').forEach(a => a.classList.remove('rotate-180'));
+    });
+});
+
+document.addEventListener('DOMContentLoaded', () => {
+    const cardContainer = document.querySelector('#card-slider-container');
+    const cardTrack = document.querySelector('#card-slider-track');
+
+    if (!cardContainer || !cardTrack) return;
+
+    let isCardDragging = false;
+    let cardStartPos;
+    let cardCurrentTranslate;
+
+    // Şəkillərin brauzer tərəfindən dartılmasını (ghost image) söndürürük
+    const allImages = cardTrack.querySelectorAll('img');
+    allImages.forEach(img => {
+        img.addEventListener('dragstart', (e) => e.preventDefault());
+    });
+
+    cardContainer.addEventListener('mousedown', (e) => {
+        isCardDragging = true;
+        cardContainer.classList.replace('cursor-grab', 'cursor-grabbing');
+        
+        cardStartPos = e.pageX - cardContainer.offsetLeft;
+        
+        const style = window.getComputedStyle(cardTrack);
+        const matrix = new WebKitCSSMatrix(style.transform);
+        cardCurrentTranslate = matrix.m41;
+        
+        cardTrack.style.transition = 'none';
+    });
+
+    const stopCardDragging = () => {
+        if (!isCardDragging) return;
+        isCardDragging = false;
+        cardContainer.classList.replace('cursor-grabbing', 'cursor-grab');
+        cardTrack.style.transition = 'transform 0.4s ease-out';
+    };
+
+    cardContainer.addEventListener('mouseleave', stopCardDragging);
+    cardContainer.addEventListener('mouseup', stopCardDragging);
+
+    cardContainer.addEventListener('mousemove', (e) => {
+        if (!isCardDragging) return;
+        e.preventDefault();
+        
+        const currentX = e.pageX - cardContainer.offsetLeft;
+        const movement = (currentX - cardStartPos) * 1.5; // Həssaslıq amili
+        let finalTranslate = cardCurrentTranslate + movement;
+
+        // Dayanma nöqtələrini hesablamaq
+        const maxScrollLimit = -(cardTrack.scrollWidth - cardContainer.offsetWidth + 150);
+        
+        if (finalTranslate > 0) finalTranslate = 0;
+        if (finalTranslate < maxScrollLimit) finalTranslate = maxScrollLimit;
+
+        cardTrack.style.transform = `translateX(${finalTranslate}px)`;
+    });
+});
 
         
